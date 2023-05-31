@@ -8,6 +8,7 @@ import ViewImageScreen from "./app/screens/ViewImageScreen";
 import ListingDetailsScreen from "./app/screens/ListingDetailsScreen";
 import Card from "./app/components/Card";
 import MessagesScreen from "./app/screens/MessagesScreen";
+import AccountScreen from "./app/screens/AccountScreen";
 
 export default function App() {
 
@@ -16,9 +17,10 @@ export default function App() {
 
   return (
     <>
-      <MessagesScreen/>
+      <AccountScreen/>
       {/* 
       <ListingDetailsScreen/>
+      <MessagesScreen/>
       <HomeScreen/> 
       <ViewImageScreen/>
       */}
