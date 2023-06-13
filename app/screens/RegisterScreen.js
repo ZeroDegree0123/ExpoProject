@@ -2,23 +2,32 @@ import React from "react";
 import { Image, StyleSheet } from "react-native";
 import * as Yup from "yup";
 
-import {AppFormField, AppForm, SubmitButton} from "../components/forms"
+import { AppForm, AppFormField, SubmitButton } from "../components/forms";
 import Screen from "../components/Screen";
 
 const validationSchema = Yup.object().shape({
+    name: Yup.string().required().label("name"),
     email: Yup.string().required().email().label("Email"),
     password: Yup.string().required().min(4).label("Password")
-});
+})
 
-export default function LoginScreen() {
+export default function RegisterScreen() {
     return (
         <Screen style={styles.container}>
-            <Image style={styles.logo} source={{ uri: "https://imgur.com/oCrhunl.png"}}/>
+            <Image style={styles.logo} source={{ uri: "https://imgur.com/oCrhunl.png" }}/>
             <AppForm
-                initialValues={{email: "", password: ""}}
-                onSubmit={values => console.log(values)}
+                initialValues={{name: "", email: "", password: ""}}
+                onSubmit={values =>console.log(values)}
                 validationSchema={validationSchema}
             >
+                <AppFormField
+                    name="name"
+                    autoCapitalize="none"
+                    autoCorrect={false}
+                    icon="account"
+                    placeholder="Name"
+                    textContentType="name"
+                />
                 <AppFormField
                     name="email"
                     autoCapitalize="none"
@@ -37,7 +46,7 @@ export default function LoginScreen() {
                     textContentType="password"
                     secureTextEntry
                 />
-                <SubmitButton title="Login"/>
+                <SubmitButton title="Register"/>
             </AppForm>
         </Screen>
     );
@@ -46,6 +55,7 @@ export default function LoginScreen() {
 const styles = StyleSheet.create({
     container: {
         padding: 10,
+
     },
     logo: {
         alignSelf: "center",
@@ -53,5 +63,5 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         width: 80,
         height: 80,
-    },
+    }
 })

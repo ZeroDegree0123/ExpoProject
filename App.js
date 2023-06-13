@@ -14,43 +14,24 @@ import Screen from "./app/components/Screen";
 import AppInput from "./app/components/AppInput";
 import AppPicker from "./app/components/AppPicker";
 import AppText from "./app/components/AppText";
-
-const categories = [
-  { 
-    label: "Furniture",
-    value: 1
-  },
-  { 
-    label: "Clothing",
-    value: 2
-  },
-  { 
-    label: "Electronics",
-    value: 3
-  },
-]
+import LoginScreen from "./app/screens/LoginScreen";
+import RegisterScreen from "./app/screens/RegisterScreen";
+import ListingEditScreen from "./app/screens/ListingEditScreen";
+import ListItem from "./app/components/ListItem";
 
 export default function App() {
-  const [category, setCategory] = useState()
 
   return (
     <>
-      <Screen>
-        <AppPicker
-          selectedItem={category}
-          onSelectItem={item => setCategory(item)}
-          items={categories} 
-          icon="apps" 
-          placeholder="Category"
-        /> 
-        <AppInput icon="email" placeholder="email"/>
-      </Screen>
+      <ListingEditScreen/>
       {/* 
-      <ListingScreen/>
-      <AccountScreen/>
-      <ListingDetailsScreen/>
       <MessagesScreen/>
       <HomeScreen/> 
+      <ListingScreen/>
+      <AccountScreen/>
+      <LoginScreen/>
+      <RegisterScreen/>
+      <ListingDetailsScreen/>
       <ViewImageScreen/>
       */}
     </>
