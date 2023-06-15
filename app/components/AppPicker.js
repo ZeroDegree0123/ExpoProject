@@ -41,8 +41,8 @@ export default function AppPicker({icon, numberOfColumns = 1, items, placeholder
                     <FlatList
                         numColumns={numberOfColumns}
                         data={items}
-                        keyExtractor={item => item.value.toString()}
-                        renderItem={({item}) => 
+                        keyExtractor={(item) => item.value.toString()}
+                        renderItem={({ item }) => 
                             <PickerItemComponent
                                 item={item}
                                 label={item.label}
