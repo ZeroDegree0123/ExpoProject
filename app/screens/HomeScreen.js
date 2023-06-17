@@ -4,7 +4,7 @@ import { StyleSheet, ImageBackground, View, Image, Text } from "react-native";
 import AppButton from '../components/AppButton';
 import colors from '../config/colors';
 
-export default function HomeScreen(props) {
+export default function HomeScreen({ navigation }) {
 
     return (
         <ImageBackground blurRadius={2} style={styles.background} source={{ uri: "https://imgur.com/cYZTkeA.png" }}>
@@ -13,8 +13,8 @@ export default function HomeScreen(props) {
                 <Text style={styles.text}>Listen Anywhere & Everywhere</Text>
             </View>
             <View style={styles.buttonContainer}>
-                <AppButton title="Login" onPress={() => console.log("Logged In")}/>
-                <AppButton title="Register" color="secondary" />
+                <AppButton title="Login" onPress={() => navigation.navigate("Login")}/>
+                <AppButton title="Register" color="secondary" onPress={() => navigation.navigate("Register")}/>
             </View>
         </ImageBackground>
     );

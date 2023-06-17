@@ -25,6 +25,9 @@ import ListingEditScreen from "./app/screens/ListingEditScreen";
 import ListItem from "./app/components/ListItem";
 import ImageInput from "./app/components/ImageInput";
 import ImageInputList from "./app/components/ImageInputList";
+import AuthNavigator from "./app/navigation/AuthNavigator";
+import navigationTheme from "./app/navigation/navigationTheme";
+import AppNavigator from "./app/navigation/AppNavigator";
 
 const Link = () => {
   const navigation = useNavigation()
@@ -54,6 +57,23 @@ const TweetDetails = ({ route }) => (
   </Screen>
 )
 
+const Profile = ({ navigation }) => (
+  <Screen>
+    <Text>Tweets</Text>
+    {/* <Link/> */}
+    <Button
+      title="View Profile"
+      onPress={() => navigation.navigate("ProfileDetails", { id: 1 })}
+      /> 
+  </Screen>
+)
+
+const ProfileDetails = ({ route }) => (
+  <Screen>
+    <Text>Details {route.params.id}</Text>
+  </Screen>
+)
+
 const Account = ({ navigation }) => (
   <Screen>
     <Text>Account</Text>
@@ -62,7 +82,7 @@ const Account = ({ navigation }) => (
 
 ////////////*STACK*/////////////
 const Stack = createNativeStackNavigator()
-const StackNavigator = () => (
+const FeedNavigator = () => (
   <Stack.Navigator
   screenOptions={{
     headerStyle: { backgroundColor: "dodgerblue"},
@@ -83,12 +103,52 @@ const StackNavigator = () => (
   </Stack.Navigator>
 )
 
+const AccountNavigator = () => (
+  <Stack.Navigator
+  screenOptions={{
+    headerStyle: { backgroundColor: "dodgerblue"},
+    headerTintColor: "white",
+  }}>
+    <Stack.Screen 
+      name="Profile" 
+      component={Profile}
+      options={{
+        headerStyle: { backgroundColor: "tomato"},
+        headerTintColor: "white",
+      }}
+      />
+    <Stack.Screen
+      name="ProfileDetails" 
+      component={ProfileDetails}
+      />
+  </Stack.Navigator>
+)
+
 ////////////*TABS*/////////////
 const Tab = createBottomTabNavigator();
 const TabNavigator = () => (
-  <Tab.Navigator>
-    <Tab.Screen name="Feed" component={Tweets}/>
-    <Tab.Screen name="Account" component={Account}/>
+  <Tab.Navigator
+    screenOptions={{
+      tabBarActiveBackgroundColor: "tomato",
+      tabBarActiveTintColor: "white",
+      tabBarInactiveBackgroundColor: "#eee",
+      tabBarInactiveTintColor: "black",
+    }}
+  >
+    <Tab.Screen
+      name="Feed"
+      component={FeedNavigator}
+      options={{
+        tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name="home" size={size} color={color}/>
+      }}
+     />
+    <Tab.Screen
+      name="Account"
+      component={AccountNavigator}
+      options={{
+        tabBarIcon: ({ size, color }) => <MaterialCommunityIcons name="account" size={size} color={color}/>
+      }}
+     />
   </Tab.Navigator>
 )
 
@@ -97,8 +157,11 @@ export default function App() {
 
   return (
     <>
-      <NavigationContainer>
-        <TabNavigator/>
+      <NavigationContainer theme={navigationTheme}>
+        
+        <AppNavigator/>
+        {/* <AuthNavigator/> */}
+        {/* <TabNavigator/> */}
         {/* <StackNavigator/> */}
       </NavigationContainer>
       {/* 
